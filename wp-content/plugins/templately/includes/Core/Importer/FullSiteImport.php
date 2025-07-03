@@ -259,6 +259,9 @@ class FullSiteImport extends Base {
 		if (isset($data['dependency_data'])) {
 			$this->dependency_data = $data['dependency_data'];
 		}
+		if (isset($data['is_import_status_handled'])) {
+			$this->is_import_status_handled = $data['is_import_status_handled'];
+		}
 	}
 
 	private function clear_session_data(): bool {
@@ -325,6 +328,7 @@ class FullSiteImport extends Base {
 			exit;
 		}
 
+		add_filter( 'wp_image_editors', [ $this, 'wp_image_editors' ], 10, 1 );
 
 
 		define('TEMPLATELY_START_TIME', microtime(true));
@@ -405,10 +409,10 @@ class FullSiteImport extends Base {
 
 
 
-			// /**
-			//  * Reading Manifest File
-			//  */
-			// $this->read_manifest();
+			/**
+			 * Reading Manifest File
+			 */
+			$this->manifest = $this->read_manifest($this->request_params['dir_path']);
 
 			/**
 			 * Version Check
@@ -426,6 +430,10 @@ class FullSiteImport extends Base {
 			}
 
 
+
+			update_option('templately_import_platform', $platform);
+
+
 			/**
 			 * Should Revert Old Data
 			 */
@@ -438,9 +446,7 @@ class FullSiteImport extends Base {
 
 		} catch ( Exception $e ) {
 			$should_retry = $e instanceof RetryableErrorException;
-			if(!$should_retry){
-				$this->handle_import_status('failed', $e->getMessage());
-			}
+			$this->handle_import_status('failed', $e->getMessage());
 
 			$this->sse_message([
 				'action'  => 'error',
@@ -457,6 +463,15 @@ class FullSiteImport extends Base {
 			// TODO: cleanup
 			// $this->clear_session_data();
 		// }
+	}
+
+
+	public function wp_image_editors( $editors ) {
+		// If GD is available, use only GD. Otherwise, fallback to all available editors.
+		if ( is_callable( [ 'WP_Image_Editor_GD', 'test' ] ) && call_user_func( [ 'WP_Image_Editor_GD', 'test' ] ) ) {
+			return [ 'WP_Image_Editor_GD' ];
+		}
+		return $editors;
 	}
 
 	// Updated import_status method
@@ -708,11 +723,10 @@ class FullSiteImport extends Base {
 		add_filter('elementor/files/allow_unfiltered_upload', '__return_true');
 
 		$request_params = $this->get_session_data();
-		$manifest = $this->read_manifest($request_params['dir_path']);
 
 		$import        = new Import(array_merge($request_params, [
 			'origin'   => $this,
-			'manifest' => $manifest,
+			'manifest' => $this->manifest,
 		]));
 		$imported_data = $import->run();
 
@@ -839,7 +853,7 @@ class FullSiteImport extends Base {
 	}
 
 	public function handle_import_status($status, $description = '') {
-		if ($this->is_import_status_handled) {
+		if ($this->is_import_status_handled === $status) {
 			Helper::log("Import status already handled: $status");
 			return null;
 		}
@@ -877,6 +891,10 @@ class FullSiteImport extends Base {
 			// Handle error
 			Helper::log($response->get_error_message());
 		} else {
+
+			$this->update_session_data([
+				'is_import_status_handled' => $this->is_import_status_handled,
+			]);
 			// Handle success
 			$body = wp_remote_retrieve_body($response);
 			$data = json_decode($body, true);
@@ -1004,12 +1022,17 @@ class FullSiteImport extends Base {
 		// 	wp_send_json_error("Nonce not verified.");
 		// }
 
+		delete_option('templately_import_platform');
+
 		$option_active         = null;
 		$options_deleted       = false;
 		$imported_list_deleted = false;
 		$options               = Utils::get_backup_options();
 		$status_args           = [ 'post_type' => 'templately_library' ];
-		$all_post_url          = admin_url(add_query_arg( $status_args, 'edit.php' ));
+		$all_post_url          = add_query_arg( [
+			"page" => "templately_settings",
+			"path" => "settings/elementor/miscellaneous",
+		], admin_url('admin.php' ));
 		// wp_send_json_success([$options]);
 
 		if(class_exists('Elementor\Plugin')){

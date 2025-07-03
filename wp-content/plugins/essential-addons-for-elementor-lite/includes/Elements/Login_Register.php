@@ -5604,6 +5604,7 @@ class Login_Register extends Widget_Base {
         <div class="eael-login-registration-wrapper <?php echo empty( $form_image_id ) ? '' : esc_attr( 'has-illustration' ); ?>"
              data-is-ajax="<?php echo esc_attr( $this->get_settings_for_display( 'enable_ajax' ) ); ?>"
              data-widget-id="<?php echo esc_attr( $this->get_id() ); ?>"
+             data-page-id="<?php echo esc_attr( $this->page_id ); ?>"
              data-recaptcha-sitekey="<?php echo esc_attr( get_option( 'eael_recaptcha_sitekey' ) ); ?>"
 			 data-recaptcha-sitekey-v3="<?php echo esc_attr( get_option( 'eael_recaptcha_sitekey_v3' ) ); ?>"
 			 data-login-recaptcha-version="<?php echo esc_attr( $login_recaptcha_version ); ?>"
@@ -6379,7 +6380,7 @@ class Login_Register extends Widget_Base {
 			$rp_data['rp_login'] = $_GET['eael_login'] ?? '';
 			$rp_data['rp_key']   = $_GET['eael_key'] ?? '';
 			
-			if( $validation_required ){
+			if( $validation_required && ! isset( $_POST['eael-resetpassword-submit'] ) ){
 				$user = check_password_reset_key( $rp_data['rp_key'], $rp_data['rp_login'] );
 
 				if ( empty( $rp_data['rp_key'] ) || ! $user || is_wp_error( $user ) ) {
@@ -6727,7 +6728,7 @@ class Login_Register extends Widget_Base {
 
 	protected function print_login_validation_errors() {
 		$resetpassword_success_key = 'eael_resetpassword_success_' . $this->get_id();
-		$resetpassword_success     = apply_filters( 'eael/login-register/resetpassword-success-message', get_option( $resetpassword_success_key ) );
+		$resetpassword_success     = apply_filters( 'eael/login-register/resetpassword-success-message', json_decode( get_option( $resetpassword_success_key ) ) );
 
 		if ( ! empty( $resetpassword_success ) && 'register' !== $this->ds['default_form_type'] ) {
 			$this->print_resetpassword_success_message( $resetpassword_success );
@@ -6800,6 +6801,12 @@ class Login_Register extends Widget_Base {
 			do_action( 'eael/login-register/after-showing-login-error', $resetpassword_error, $this );
 
 			delete_option( $error_key );
+		} 
+
+		$success_key = 'eael_resetpassword_success_' . esc_attr( $this->get_id() );
+		$resetpassword_success = apply_filters( 'eael/login-register/resetpassword-success-message', json_decode( get_option( $success_key ) ) );
+		if ( ! empty( $resetpassword_success ) ) {
+			$this->print_resetpassword_success_message( $resetpassword_success );
 		}
 	}
 

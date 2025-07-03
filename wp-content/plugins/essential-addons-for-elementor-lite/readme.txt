@@ -1,20 +1,20 @@
-=== Essential Addons for Elementor – Popular Elementor Addon With Ready Templates, Advanced Widgets, Kits & WooCommerce Builders ===
-Contributors: wpdevteam, Codetic, re_enter_rupok, Asif2BD, priyomukul, sumaiyasiddika, rudlinkon, robinwpdeveloper, jakariaistauk, himadree12
-Tags: elementor, elements, elementor addon, elementor widget, woocommerce elementor
+=== Essential Addons for Elementor - Popular Elementor Templates & Widgets ===
+Contributors: wpdevteam, Codetic, re_enter_rupok, Asif2BD, priyomukul, sumaiyasiddika, rudlinkon, nhrrob, jakariaistauk, himadree12
+Tags: elementor, elementor addons, elementor widgets, elementor templates, elementor woocommerce
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.0
-Stable tag: 6.1.12
+Stable tag: 6.2.0
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
-The Essential plugin you install after Elementor! Packed with 100+ stunning elements like Data Table, Event Calendar, Filterable Gallery, WooCommerce.
+Elementor addon offering 100+ widgets and templates — Elementor Gallery, Slider, Form, Post Grid, Menu, Accordion, WooCommerce & more.
 
 == Description ==
 
-Enhance your [Elementor](https://wordpress.org/plugins/elementor/) page building experience with 100+ creative elements and extensions. Add powers to your website builder using our easy-to-use Elementor widgets and ready template which were designed to make your next WordPress page and posts design easier and prettier than ever before.
+Enhance **[Elementor](https://wordpress.org/plugins/elementor/)** page building experience with 100+ creative elements and extensions. Add powers to your website builder using our easy-to-use Elementor widgets and ready Elementor templates, which were designed to make your next WordPress website design easier and prettier than ever before.
 
-##ESSENTIAL ADDONS: 100+ BEST ELEMENTOR WIDGETS WITH KITS, 5,000+ READY TEMPLATES & BEST WOOCOMMERCE BUILDER, SERVING 2 MILLION+ ACTIVE USERS##
+= Essential Addons for Elementor offers 100+ best Elementor widgets with kits, 5,500+ ready templates & best WooCommerce builder, serving 2 million+ active users. =
 
 [Check the Demos](https://essential-addons.com/demos)
 
@@ -28,8 +28,8 @@ No extra resources or messy codes to slow down your website. Optimized for super
 Enable and disable individual elements adding to make your page load faster and smoother. You can deactivate unnecessary widgets to keep the site light.
 
 
-### 5000+ Ready Elementor Templates & Blocks through **Templately**
-Grab access to 5,000 pre-made templates from the ultimate templates cloud for WordPress, Templately, that come with Essential Addons.Unlock stunning Elementor templates, blocks & sections;and design your website to stand out from the crowd.
+### 6000+ Ready WordPress Templates & Blocks through **Templately**
+Grab access to 3,000+ pre-made Elementor templates from the ultimate templates cloud for WordPress, Templately, that come with Essential Addons.Unlock stunning Elementor templates, blocks & sections;and design your website to stand out from the crowd.
 
 https://youtu.be/Z73muoczARc
 
@@ -112,6 +112,7 @@ We have designed more than 50 of the most useful widgets to enhance your Element
 54. [Woo Product Images](https://essential-addons.com/woo-product-images/)- Display WooCommerce product images with stunning effects
 55. [Woo Add to Cart](https://essential-addons.com/woo-add-to-cart/)- Make shopping easier with an ‘Add to Cart’ button
 56. [Breadcrumbs](https://essential-addons.com/breadcrumbs/)- Improve navigation with breadcrumbs for easy exploration
+57. [Code Snippet](https://essential-addons.com/code-snippet)- Display beautifully formatted code on your Elementor website
 
 Extensions (Free):
 
@@ -313,6 +314,73 @@ Your existing elements/content will work with premium version. So you won't lose
 
 
 == Changelog ==
+
+= 6.2.0 - 03/07/2025 =
+
+- Added: New Widget | EA Code Snippet
+- Improved: Security Enhancements
+- Improved: EA Event Calendar | Added label to search field for accessibility
+- Fixed: EA Woo Product Gallery | Resolved cropping and misalignment issues with custom image sizes
+- Few minor bug fixes & improvements
+
+
+= 6.1.20 - 26/06/2025 =
+
+- Improved: Security Enhancements
+- Fixed: EA Woo Product Gallery | Compatibility issue with WPML
+- Fixed: EA Filterable Gallery | Resolved layout issues
+- Fixed: EA Woo Product Carousel | Addressed accessibility issues
+- Fixed: EA Product Grid | Pricing now displays correctly in list layout
+- Fixed: Resolved compatibility issue with GiveWP
+- Few minor bug fixes & improvements
+
+= 6.1.19 - 20/06/2025 =
+
+- Few minor bug fixes & improvements
+
+= 6.1.18 - 04/06/2025 =
+
+- Fixed: EA Woo Product Gallery | category tab not working
+- Few minor bug fixes & improvements
+
+= 6.1.17 - 02/06/2025 =
+
+- Added: EA SVG Draw | New Fill Type (Always) Controller
+- Added: EA Filterable Gallery | Added Captions for Videos
+- Fixed: EA Advanced Data Table | Sorting Issue for non-English Languages
+- Fixed: EA Advanced Data Table | Sorting Icon Shows Console Error
+- Fixed: EA Woo Product Gallery |  Quick View Popup Styling Issue
+- Fixed: EA Woo Product Gallery |  "View Cart" Button Line Height Is Incorrect
+- Fixed: EA Simple Menu |  Undefined Array Key "eael_simple_menu_menu" Warning
+- Fixed: EA Woo Product Grid | "View More" Button Visible After Full Load in Elementor Tabs
+- Fixed: EA Woo Product Grid | Issues with Missing Products
+- Fixed: EA Woo Product Image | Image Scaling Issue
+- Fixed: EA Login/Register Form | Validation Message Not Showing
+- Fixed: EA Login/Register Form | Issue Submitting Forms With File Uploads
+- Fixed: EA SVG Draw  | Fill After Draw Issue
+- Fixed: EA Post Grid  | Excluding Pages Issue
+- Fixed: Compatibility Issue with Newer PHP Versions.
+- Improved: EA Fancy Text | Animation Delay Until Section Scrolls Into View.
+- Improved: EA Filterable Gallery | Revamped Controls & Layouts
+- Improved : Removed Unused Class “use” Declaration
+- Improved: EA Post Grid, Team Member, Testimonial, Woo Product Grid, Woo Product Gallery | Controls Reorganized in Elementor Panel
+- Few minor bug fixes & improvements
+
+= 6.1.15 - 25/05/2025 =
+
+- Improved: EA Filterable Gallery | Revamped Controls & Layouts
+- Improved: EA Dual Color Heading | Added Multiple Heading Option
+- Fixed: EA Login/Register Form | Google Social Login assigning "Subscriber" instead of "Editor" role after Signup
+- Few minor bug fixes & improvements
+
+= 6.1.14 - 21/05/2025 =
+
+- Few minor bug fixes & improvements
+
+= 6.1.13 - 19/05/2025 =
+
+- Improved: Security Enhancement
+- Few minor bug fixes & improvements
 
 = 6.1.12 - 13/05/2025 =
 

@@ -1,4 +1,13 @@
 == Changelog ==
+= 3.2.7 – 30-06-2025 =
+Improved: Optimized attachment image import process using FSI.
+Fixed: Templately settings page was not loading correctly.
+Few minor bug fixes & improvements
+
+= 3.2.6 – 25-05-2025 =
+Added: Templately Settings page.
+Fixed: Button hiding issue on older WordPress versions.
+Few minor bug fixes & improvements.
 
 = 3.2.5 – 16-04-2025 =
 Fixed: Text domain issue.

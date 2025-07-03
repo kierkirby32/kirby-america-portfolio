@@ -29,7 +29,7 @@ import {
     DynamicInputControl,
     EBIconPicker,
     InspectorPanel,
-    EBTextControl,
+    EBTextControlWithDropdown,
 } from "@essential-blocks/controls";
 
 import {
@@ -236,7 +236,7 @@ function Inspector(props) {
     const changeFormStyle = (selected) => {
         setAttributes({ formStyle: selected });
 
-        if (formStyle === "form-style-modern") {
+        if (selected === "form-style-modern") {
             setAttributes({
                 inputIconSizeRange: "20",
                 fieldsBorderHBdr_Bottom: "1",
@@ -268,7 +268,10 @@ function Inspector(props) {
                     fieldsPaddingisLinked: false,
                 });
             }
-        } else if (formStyle === "form-style-classic") {
+
+            applyFilters("eb_form_style_modern_multistep", '', attributes, setAttributes);
+
+        } else if (selected === "form-style-classic") {
             setAttributes({
                 inputIconSizeRange: "15",
                 fieldsBorderHBdr_Bottom: "1",
@@ -351,23 +354,6 @@ function Inspector(props) {
                     title={__("General", "essential-blocks")}
                     initialOpen={true}
                 >
-                    {/* <TextControl
-                            label={__(
-                                "Form Title",
-                                "essential-blocks"
-                            )}
-                            value={formTitle}
-                            type="string"
-                            help={__(
-                                "Use Title to recognize in Form Response",
-                                "essential-blocks"
-                            )}
-                            onChange={(value) =>
-                                setAttributes({
-                                    formTitle: value,
-                                })
-                            }
-                        /> */}
                     <DynamicInputControl
                         label={__("Form Title", "essential-blocks")}
                         help={__(
@@ -392,15 +378,15 @@ function Inspector(props) {
                     {["contact_form", "subscription_form"].includes(
                         formType,
                     ) && (
-                        <ProSelectControl
-                            label={__("Template", "essential-blocks")}
-                            value={template}
-                            options={formTemplates}
-                            onChange={(selected) =>
-                                changeFormTemplate(selected)
-                            }
-                        />
-                    )}
+                            <ProSelectControl
+                                label={__("Template", "essential-blocks")}
+                                value={template}
+                                options={formTemplates}
+                                onChange={(selected) =>
+                                    changeFormTemplate(selected)
+                                }
+                            />
+                        )}
                     {"Desktop" === resOption && (
                         <>
                             <ProSelectControl
@@ -413,6 +399,8 @@ function Inspector(props) {
                             />
                         </>
                     )}
+
+
 
                     <ToggleControl
                         label={__("Show Field Labels?", "essential-blocks")}
@@ -449,6 +437,12 @@ function Inspector(props) {
                         setAttributes,
                     )}
                 </InspectorPanel.PanelBody>
+                {applyFilters(
+                    "eb_from_pro_multistep_settings",
+                    "",
+                    attributes,
+                    setAttributes,
+                )}
                 <InspectorPanel.PanelBody
                     title={__("Form Settings", "essential-blocks")}
                     initialOpen={true}
@@ -463,7 +457,7 @@ function Inspector(props) {
                             })
                         }
                     />
-                    <EBTextControl
+                    <EBTextControlWithDropdown
                         label={__("Email To", "essential-blocks")}
                         value={formSettings.mailTo}
                         placeholder={
@@ -484,7 +478,7 @@ function Inspector(props) {
                         insertMode={"append"}
                         updateValueOnSelect={true}
                     />
-                    <EBTextControl
+                    <EBTextControlWithDropdown
                         label={__("Reply To", "essential-blocks")}
                         value={formSettings.replyTo}
                         placeholder={
@@ -505,7 +499,7 @@ function Inspector(props) {
                             "essential-blocks",
                         )}
                     />
-                    <EBTextControl
+                    <EBTextControlWithDropdown
                         label={__("Email Cc (Optional)", "essential-blocks")}
                         placeholder={__(
                             "Recipient Email Address",
@@ -526,7 +520,7 @@ function Inspector(props) {
                         insertMode={"append"}
                         updateValueOnSelect={true}
                     />
-                    <EBTextControl
+                    <EBTextControlWithDropdown
                         label={__("Email Bcc (Optional)", "essential-blocks")}
                         value={formSettings.mailBcc}
                         placeholder={__(
@@ -729,6 +723,13 @@ function Inspector(props) {
                                 />
                             </>
                         )}
+
+                        {applyFilters(
+                            "eb_from_pro_multistep_button_settings",
+                            "",
+                            attributes,
+                            setAttributes,
+                        )}
                     </>
                 </InspectorPanel.PanelBody>
             </InspectorPanel.General>
@@ -802,6 +803,12 @@ function Inspector(props) {
                         </>
                     )}
                 </InspectorPanel.PanelBody>
+                {applyFilters(
+                    "eb_from_pro_multistep_styles",
+                    "",
+                    attributes,
+                    setAttributes,
+                )}
                 {showLabel && (
                     <InspectorPanel.PanelBody
                         title={__("Labels", "essential-blocks")}
@@ -1447,6 +1454,12 @@ function Inspector(props) {
                         </>
                     )}
                 </InspectorPanel.PanelBody>
+                {applyFilters(
+                    "eb_from_pro_multistep_button_styles",
+                    "",
+                    attributes,
+                    setAttributes,
+                )}
                 <InspectorPanel.PanelBody
                     title={__("Validation", "essential-blocks")}
                     initialOpen={false}
